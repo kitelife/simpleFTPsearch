@@ -8,8 +8,11 @@
 * 为了及时更新索引，可以在服务器的cron中添加任务---在每天的某个时间自动执行索引部分的程序，如下例子:
 
 >1.命令行中输入crontab -e
+
 >2.在cron中添加新的一行: 0 2 * * * /path/to/listdir.py >> /dev/null
+
 >3.然后为listdir.py添加可执行权限chmod +x listdir.py
+
 >4.cron中添加那行的意思是：每天晚上2点开始执行listdir.py这个脚本脚本，并将程序标准输出信息重定向到/dev/null这个文件。关于cron的具体信息请查询man手册或者google一下
 
 ###改进
