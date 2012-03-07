@@ -1,0 +1,27 @@
+@CHARSET "UTF-8";
+
+html,body{
+	font:100% Arial,Verdana,sans-serif;
+    	height:100%;
+}
+.applemenu{
+	margin: 5px 0;
+	padding: 0;
+	width: auto; /*width of menu*/
+}
+
+.applemenu div.silverheader a{
+	background: black url(silvergradient.gif) repeat-x center left;
+	font: normal 15px Tahoma, "Lucida Grande", "Trebuchet MS", Helvetica, sans-serif;
+	color: white;
+	display:block;
+	position: relative; /*To help in the anchoring of the ".statusicon" icon image*/
+	width: auto;
+	padding: 5px 0;
+	padding-left: 8px;
+	text-decoration: none;
+}
+
+.applemenu div.submenu{ /*DIV that contains each sub menu*/
+padding: 5px;
+}
