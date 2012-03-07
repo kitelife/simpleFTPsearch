@@ -12,4 +12,4 @@
 ** cron中添加那行的意思是：每天晚上2点开始执行listdir.py这个脚本脚本，并将程序标准输出信息重定向到/dev/null这个文件。关于cron的具体信息请查询man手册或者google一下
 
 ###改进
-*接下来的改进可能是将mysql替换掉，用berkelyDB来存储索引。
+* 接下来的改进可能是将mysql替换掉，用berkelyDB来存储索引。
