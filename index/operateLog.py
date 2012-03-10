@@ -1,9 +1,9 @@
 #!/usr/bin/python
 
 #-*- coding: utf-8 -*-
-logs = 'LogForListFTP.txt'
+_logs = 'LogForListFTP.txt'
 
 def writeLog(message):
-	logFile = open(logs, 'a')
+	logFile = open(_logs, 'a')
 	logFile.write(message + '\n')
 	logFile.close()
