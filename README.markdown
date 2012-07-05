@@ -47,5 +47,12 @@
 
 * 重启apache：sudo /etc/init.d/apache2 restart
 
+另外还需要注意配置index的config.py，以及search的cgiConfig.py文件。
+
+### 使用
+
+建立索引数据库并监听ftp目录: python ftpIndexer.py -i \>\> ftpindex.log &
+
+文件testIndex.py可用于测试是否成功建立索引数据库: python testIndex.py 关键字
 ### 注意：
 * 需要给python cgi脚本result.py添加可执行权限，且保证文件格式正确(使用file命令检查，如果输出中有a python script这样的信息则正确)
