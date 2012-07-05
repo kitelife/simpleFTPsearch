@@ -11,7 +11,7 @@
 
 > ScriptAlias /cgi-bin/ /var/www/cgi-bin/
 >
-> <Directory "/var/www/cgi-bin">
+> \<Directory "/var/www/cgi-bin"\>
 >
 >    AllowOverride None
 >
@@ -21,7 +21,7 @@
 >
 >    Allow from all
 >
-> </Directory>
+> \</Directory\>
 
 修改为:
 
