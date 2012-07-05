@@ -31,6 +31,9 @@ else:
 
     index = 1
     for key, value in resultDict.iteritems():
+        for rootKey, rootValue in cgiConfig.rootMap.iteritems():
+            if rootKey in key:
+                key = key.replace(rootKey, rootValue)
         items += "<p>%d.%s</p>" %(index, value)
         items += "<p><a href='%s' target='_blank'>%s</a></p>" %(key, key)
         index += 1
