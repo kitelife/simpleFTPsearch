@@ -5,7 +5,10 @@
 
 ###配置
 
+* 安装python-pyinotify, python-bsddb3：sudo apt-get install python-pyinotify python-bsddb3
+
 由于采用python cgi脚本来实现搜索部分的功能，所以需要配置apache的cgi。
+
 * 下载安装libapache2-mod-python：sudo apt-get install libapache2-mod-python
 * 将search文件夹内的文件和子文件夹置于apache的DocumentRoot下。
 * 打开文件/etc/apache2/sites-available/default，找到如下部分内容:
