@@ -28,7 +28,7 @@
 
 > ScriptAlias /cgi-bin/ /var/www/cgi-bin/
 >
-> <Directory "/var/www/cgi-bin">
+> \<Directory "/var/www/cgi-bin"\>
 >
 >    AllowOverride None
 >
@@ -42,7 +42,7 @@
 >
 >    AddHandler default-handler .html .htm
 >
-> </Directory>
+> \</Directory\>
 
 ** 重启apache：sudo /etc/init.d/apache2 restart
 
