@@ -4,10 +4,11 @@
 * 目前存在的问题是，inotify监听的目录数量虽然可以自行设置，但数量应该和内存使用相关，这一点可能会限制能够监听的目录数量。
 
 ###配置
-* 由于采用python cgi脚本来实现搜索部分的功能，所以需要配置apache的cgi。
-** 下载安装libapache2-mod-python：sudo apt-get install libapache2-mod-python
-** 将search文件夹内的文件和子文件夹置于apache的DocumentRoot下。
-** 打开文件/etc/apache2/sites-available/default，找到如下部分内容:
+
+由于采用python cgi脚本来实现搜索部分的功能，所以需要配置apache的cgi。
+* 下载安装libapache2-mod-python：sudo apt-get install libapache2-mod-python
+* 将search文件夹内的文件和子文件夹置于apache的DocumentRoot下。
+* 打开文件/etc/apache2/sites-available/default，找到如下部分内容:
 
 > ScriptAlias /cgi-bin/ /var/www/cgi-bin/
 >
@@ -44,7 +45,7 @@
 >
 > \</Directory\>
 
-** 重启apache：sudo /etc/init.d/apache2 restart
+* 重启apache：sudo /etc/init.d/apache2 restart
 
 ### 注意：
 * 需要给python cgi脚本result.py添加可执行权限，且保证文件格式正确(使用file命令检查，如果输出中有a python script这样的信息则正确)
