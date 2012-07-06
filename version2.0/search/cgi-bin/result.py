@@ -8,7 +8,7 @@ import cgiConfig
 form = cgi.FieldStorage()
 keyWordValue = form.getvalue('searchterm')
 
-if keyWordValue == None:
+if keyWordValue is None:
     content = "<h3>你的输入不能为空哦...</h3>"
 else:
     db = bsddb.btopen(cgiConfig.dbFile, 'r')
