@@ -2,39 +2,29 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" href="css/bootstrap/bootstrap.min.css" type="text/css">
+<link rel="stylesheet" href="css/style.css" type="text/css">
+<link href='http://fonts.googleapis.com/css?family=Bitter:400,700,400italic&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
 <title>Embedded-Lab FTP Search</title>
-
-<style type="text/css">
-a{
-	text-decoration:none;
-}
-a:hover{
-	text-decoration:underline;
-}
-</style>
 </head>
 <body>
-	<br /><br /><br /><br /><br />
-	<P align=center><strong><FONT style="FONT-SIZE: 25px">Embedded Lab FTP Search</FONT></STRONG></P>
-
-	<form action="/cgi-bin/result.py" method="post">
-	<P align=center>
-	<br />
-	<br /><br />
-	<input name="searchterm" type="text" style="width:350px;height:25px">
-	<br /><br /><br />
-	<input type="submit" value="Search" style="width:75px;height:30px"></input>
-	</P>
-	<br />
-	</form>
-	<br /><br />
-	<br /><br />
-	<p id="school"align=center>
-	<br /><br />
-	SJTU Embedded Lab
-	<br /><br />
-	Produced By &nbsp;Xiayf
-	</p>
-
+	<div class="header">
+		Embedded Lab FTP Search
+	</div>
+	<div class="searchform">
+		<form action="/services/ftpsearch/cgi-bin/result.py" method="post">
+		<input name="searchterm" type="text" class="input-xxlarge">
+		<br /><br />
+		<button type="submit" class="btn btn-primary">搜 索</button>
+		</form>
+	</div>
+	<div class="tip">
+		如果ftp链接打开失败，且浏览器未提示你输入用户密码，<br />那么可尝试在URL的ftp://后面添加 用户名:密码@ ，然后回车再次访问。
+	</div>
+	<div class="footer">
+		SJTU Embedded Lab
+		<br />
+		Produced By &nbsp;Xiayf
+	</div>
 </body>
 </html>
