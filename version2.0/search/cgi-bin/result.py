@@ -3,6 +3,12 @@
 import cgi
 import bsddb
 import cgiConfig
+import os
+import logging
+
+LOG_FILEANME = "search.log"
+logging.basicConfig(filename=LOG_FILEANME, level=logging.DEBUG)
+logging.debug(os.environ['SERVER_NAME'])
 
 form = cgi.FieldStorage()
 keyWordValue = form.getvalue('searchterm')
@@ -30,9 +36,9 @@ else:
 
     index = 1
     for key, value in resultDict.iteritems():
-	for rootKey, rootValue in cgiConfig.rootMap.iteritems():
-	    if rootKey in key:
-		key = key.replace(rootKey, rootValue)
+	   for root_path in cgiConfig.root_list:
+	       if root_path in key:
+		      key = key.replace(root_path, "ftp://" + os.environ['SERVER_NAME'])
         items += "<p>%d.%s</p>" %(index, value)
         items += "<p><a href='%s' target='_blank'>%s</a></p>" %(key, key)
         index += 1
