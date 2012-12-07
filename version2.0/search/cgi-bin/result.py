@@ -7,8 +7,8 @@ import os
 import logging
 
 LOG_FILEANME = "search.log"
-logging.basicConfig(filename=LOG_FILEANME, level=logging.DEBUG)
-logging.debug(os.environ['SERVER_NAME'])
+logging.basicConfig(filename=LOG_FILEANME, level=logging.INFO)
+logging.info(os.environ['SERVER_NAME'])
 
 form = cgi.FieldStorage()
 keyWordValue = form.getvalue('searchterm')
