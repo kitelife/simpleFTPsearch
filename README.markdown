@@ -59,6 +59,10 @@
 
 ### 注意：
 * 需要给python cgi脚本result.py添加可执行权限，且保证文件格式正确(使用file命令检查，如果输出中有a python script这样的信息则正确)
+* linux内核的文件系统监听功能(inotify)对监听文件/目录(包括递归监听的)的数目是有配额的，默认比较小(为8192)，监听初始化时，如果要监听的数目超过了配合，就会抛出异常pyinotify ERROR。这时需要手动更改这个配额的值。在pyinotify项目wiki的[Frequently-Asked-Questions](https://github.com/seb-m/pyinotify/wiki/Frequently-Asked-Questions)中说明了如何查看，如何更改这个配额。
+>
+>I always get WD=-1 or the message No space left on device (ENOSPC) whenever I try to add a new watch
+>You must have reached your quota of watches, type sysctl -n fs.inotify.max_user_watches to read your current limit and type sysctl -n -w fs.inotify.max_user_watches=16384 to modify (increase) it.
 
 ### 更新:
 
