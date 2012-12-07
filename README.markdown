@@ -55,7 +55,7 @@
 
 ### 使用
 
-* 建立索引数据库并监听ftp目录: sudo python ftpIndexer.py -i \>\> ftpindex.log &
+* 建立索引数据库并监听ftp目录: sudo python ftpIndexer.py -i &
 * 文件testIndex.py可用于测试是否成功建立索引数据库: python testIndex.py 关键字
 
 ### 注意：
