@@ -1,39 +1,36 @@
-<!DOCTYPE html>
+<!doctype html>
 <html>
-
   <head>
-    <meta charset='utf-8' />
-    <meta http-equiv="X-UA-Compatible" content="chrome=1" />
-    <meta name="description" content="Simpleftpsearch : a simple search engine to help find file in ftp directories" />
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Simpleftpsearch by youngsterxyf</title>
 
-    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <script src="javascripts/scale.fix.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
 
-    <title>Simpleftpsearch</title>
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
   </head>
-
   <body>
-
-    <!-- HEADER -->
-    <div id="header_wrap" class="outer">
-        <header class="inner">
-          <a id="forkme_banner" href="https://github.com/youngsterxyf/simpleFTPsearch">View on GitHub</a>
-
-          <h1 id="project_title">Simpleftpsearch</h1>
-          <h2 id="project_tagline">a simple search engine to help find file in ftp directories</h2>
-
-            <section id="downloads">
-              <a class="zip_download_link" href="https://github.com/youngsterxyf/simpleFTPsearch/zipball/master">Download this project as a .zip file</a>
-              <a class="tar_download_link" href="https://github.com/youngsterxyf/simpleFTPsearch/tarball/master">Download this project as a tar.gz file</a>
-            </section>
-        </header>
-    </div>
-
-    <!-- MAIN CONTENT -->
-    <div id="main_content_wrap" class="outer">
-      <section id="main_content" class="inner">
+    <div class="wrapper">
+      <header>
+        <h1>Simpleftpsearch</h1>
+        <p>a simple search engine to help find file in ftp directories</p>
+        <p class="view"><a href="https://github.com/youngsterxyf/simpleFTPsearch">View the Project on GitHub <small>youngsterxyf/simpleFTPsearch</small></a></p>
+        <ul>
+          <li><a href="https://github.com/youngsterxyf/simpleFTPsearch/zipball/master">Download <strong>ZIP File</strong></a></li>
+          <li><a href="https://github.com/youngsterxyf/simpleFTPsearch/tarball/master">Download <strong>TAR Ball</strong></a></li>
+          <li><a href="https://github.com/youngsterxyf/simpleFTPsearch">View On <strong>GitHub</strong></a></li>
+        </ul>
+      </header>
+      <section>
         <h2>FTP简易搜索(第二版)</h2>
 
 <ul>
+<li>2012-12-07: 其实这个项目的整体设计是很傻的。最初的想法是1.在满足需求的情况下尽可能简单;2.不多占用服务器的端口，也不用申请域名，所以才采用cgi脚本的方式将搜索功能作为原有网站的一部分来使用。但这样的话就限制了更多功能的增加。更好的设计应该是使用python框架Flask, tornado之类的来实现，然后使用apache, Nginx作为反向代理，只要在apache, nginx的配置文件里增加转发规则就可以了。</li>
 <li>在第一版中，采用cron定时任务对ftp的目录进行索引，每次索引之前清空数据库，然后遍历所有目录，将文件，文件夹的绝对路径和名称插入mysql中。搜索的过程是直接查询mysql数据库。定时任务的缺点是：两次任务的时间间隔中。文件以及文件目录的变化是不会被即时索引的。另外，在这样一个简单的应用中，数据的操作非常简单，使用mysql反而效率不高。</li>
 <li>所以第二版中，采用pyinotify库(基于内核的inotify功能)来监听ftp的目录，进行实时索引，数据库引擎则采用Berkely DB。搜索部分采用python cgi脚本。</li>
 <li>目前存在的问题是，inotify监听的目录数量虽然可以自行设置，但数量应该和内存使用相关，这一点可能会限制能够监听的目录数量。</li>
@@ -92,25 +89,29 @@
 <h3>使用</h3>
 
 <ul>
-<li>建立索引数据库并监听ftp目录: sudo python ftpIndexer.py -i &gt;&gt; ftpindex.log &amp;</li>
+<li>建立索引数据库并监听ftp目录: sudo python ftpIndexer.py -i &amp;</li>
 <li>文件testIndex.py可用于测试是否成功建立索引数据库: python testIndex.py 关键字</li>
 </ul><h3>注意：</h3>
 
 <ul>
 <li>需要给python cgi脚本result.py添加可执行权限，且保证文件格式正确(使用file命令检查，如果输出中有a python script这样的信息则正确)</li>
-</ul>
+<li>linux内核的文件系统监听功能(inotify)对监听文件/目录(包括递归监听的)的数目是有配额的，默认比较小(为8192)，监听初始化时，如果要监听的数目超过了配合，就会抛出异常pyinotify ERROR。这时需要手动更改这个配额的值。在pyinotify项目wiki的<a href="https://github.com/seb-m/pyinotify/wiki/Frequently-Asked-Questions">Frequently-Asked-Questions</a>中说明了如何查看，如何更改这个配额。</li>
+</ul><blockquote>
+<p>I always get WD=-1 or the message No space left on device (ENOSPC) whenever I try to add a new watch</p>
+
+<p>You must have reached your quota of watches, type sysctl -n fs.inotify.max_user_watches to read your current limit and type sysctl -n -w fs.inotify.max_user_watches=16384 to modify (increase) it.</p>
+</blockquote>
+
+<h3>更新:</h3>
+
+<p>2012-12-04: 之前的代码中是使用配置文件中一个硬编码的外网ip来生成搜索结果中的ftp下载链接的。但某些情况下，在内网只能使用服务器的内网ip(比如192.168.1.254)来访问ftp搜索服务，那么这时生成的下载超链接是无效的，需要用户手动修改下载链接中的服务器域名或者外网ip。新代码中使用os.environ['SERVER_NAME']环境变量来根据用户请求url中的域名或者服务器ip部分来生成搜索结果中的下载超链接。</p>
       </section>
     </div>
-
-    <!-- FOOTER  -->
-    <div id="footer_wrap" class="outer">
-      <footer class="inner">
-        <p class="copyright">Simpleftpsearch maintained by <a href="https://github.com/youngsterxyf">youngsterxyf</a></p>
-        <p>Published with <a href="http://pages.github.com">GitHub Pages</a></p>
-      </footer>
-    </div>
-
+    <footer>
+      <p>Project maintained by <a href="https://github.com/youngsterxyf">youngsterxyf</a></p>
+      <p>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></p>
+    </footer>
+    <!--[if !IE]><script>fixScale(document);</script><![endif]-->
     
-
   </body>
 </html>
