@@ -1,15 +1,15 @@
 a {
-        text-decoration:none;
+	text-decoration:none;
 }
 a:hover {
-        text-decoration:underline;
+	text-decoration:underline;
 }
 
 .header, .searchform, .tip, .footer {
 	font-family: 'Bitter', serif;
-        margin: 50px 5px;
-        float: center;
-        text-align: center;
+    margin: 50px 5px;
+    float: center;
+    text-align: center;
 }
 
 .header {
@@ -38,3 +38,38 @@ p {
 	font-size: 20px;
 }
 
+.search_form_inner input{
+	height: 30px;
+	width: 30%;
+	margin-right: 20px;
+	margin-left: 10px;
+}
+
+.search_form_inner button{
+	margin-bottom: 8px;
+}
+.resultbody{
+	margin-top: 20px;
+	margin-left: 30px;
+	margin-right: 30px;
+	font-size: 16px;
+	margin-bottom: 30px;
+}
+
+#result_items{
+	padding-top: 10px;
+	display: block;
+	border: 1px solid;
+}
+
+#abstract_part {
+	margin-top: 0px;
+}
+
+.item{
+	margin-bottom: 10px;
+}
+
+#result_page_search_form{
+	margin-bottom: 0px;
+}
