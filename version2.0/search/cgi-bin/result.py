@@ -38,7 +38,7 @@ abstract = ''
 items = ''
 
 search_form = r'''
-<form action="/cgi-bin/result.py" method="post" id="result_page_search_form">
+<form action="/services/ftpsearch/cgi-bin/result.py" method="post" id="result_page_search_form">
     <div class="search_form_inner">
     <input name="searchterm" type="text" class="input_search">
     <button type="submit" class="btn btn-primary">搜 索</button>
